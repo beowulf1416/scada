@@ -14,15 +14,17 @@
 
 #define SERVICE_NAME "service"
 
+using namespace std;
+
 /**
  * prints help information
  */
 void print_usage(const int argc, char *argv[]){
-	std::cout << "Usage: " << SERVICE_NAME << " [OPTIONS] " << std::endl;
-	std::cout << "OPTIONS" << std::endl;
-	std::cout << "\t-n\tDo not daemonize. Runs in the foreground\n\t\tinstead of as a background process" << std::endl;
-	std::cout << "\t-h\tPrints this usage information" << std::endl;
-	std::cout << "\t--help\tPrints this usage information" << std::endl;
+	cout << "Usage: " << SERVICE_NAME << " [OPTIONS] " << endl;
+	cout << "OPTIONS" << endl;
+	cout << "\t-n\tDo not daemonize. Runs in the foreground\n\t\tinstead of as a background process" << endl;
+	cout << "\t-h\tPrints this usage information" << endl;
+	cout << "\t--help\tPrints this usage information" << endl;
 }
 
 /**
@@ -100,7 +102,7 @@ int main(int argc, char *argv[]){
 
 	syslog(LOG_INFO,"%s starting up",SERVICE_NAME);
 
-	// setup syslogging
+	// setup sys logging
 #if defined(DEBUG)
     setlogmask(LOG_UPTO(LOG_DEBUG));
     openlog(SERVICE_NAME, LOG_CONS | LOG_NDELAY | LOG_PERROR | LOG_PID, LOG_USER);
