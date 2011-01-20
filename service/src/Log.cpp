@@ -20,8 +20,8 @@ Log::~Log() {
 }
 
 Log* Log::get_instance(){
-	if(!instance){
+	if(!Log::instance){
 		Log::instance = new Log();
 	}
-	return instance;
+	return Log::instance;
 }

@@ -7,6 +7,10 @@
 
 #include "Configurator.h"
 
+#include <stddef.h>
+
+Configurator* Configurator::instance = NULL;
+
 Configurator::Configurator() {
 	// TODO Auto-generated constructor stub
 
@@ -14,4 +18,19 @@ Configurator::Configurator() {
 
 Configurator::~Configurator() {
 	// TODO Auto-generated destructor stub
+}
+
+Configurator* Configurator::get_instance(){
+	if(!Configurator::instance){
+		Configurator::instance = new Configurator();
+	}
+	return Configurator::instance;
+}
+
+int Configurator::get_port(){
+	return this->port;
+}
+
+int Configurator::get_max_connections(){
+	return this->cns;
 }

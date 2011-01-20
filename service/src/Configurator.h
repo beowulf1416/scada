@@ -8,11 +8,23 @@
 #ifndef CONFIGURATOR_H_
 #define CONFIGURATOR_H_
 
+#include <string>
+
 class Configurator {
-public:
+private:
+	static Configurator* instance;
+
+	int port;		// port number
+	int cns;		// number of maximum connections
+
 	Configurator();
+public:
+	static Configurator* get_instance();
 	virtual ~Configurator();
-	void read(char *filename);
+	void read(std::string filename);
+
+	int get_port();
+	int get_max_connections();
 };
 
 #endif /* CONFIGURATOR_H_ */
