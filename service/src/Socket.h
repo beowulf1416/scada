@@ -16,6 +16,7 @@
 #include "SocketException.h"
 
 const int MAX_HOSTNAME = 200;
+const int RECEIVE_BUFFER_SIZE = 500;
 
 enum Protocol {
 	PROTOCOL_IP = 0
@@ -38,10 +39,10 @@ public:
 
 	void connect(const std::string host, const int port);
 
-	bool send(const std::string data);
-	int receive(const std::string* data);
+	void send(const std::string data);
+	std::string receive();
 
-	bool set_non_blocking(const bool blocking);
+	void set_non_blocking(const bool blocking);
 	bool is_valid();
 };
 

@@ -9,6 +9,7 @@
 #include <string.h>
 #include <arpa/inet.h>
 #include <errno.h>
+#include <fcntl.h>
 
 #include "Socket.h"
 #include "SocketException.h"
@@ -91,16 +92,40 @@ void Socket::connect(const std::string host, const int port){
 	}
 }
 
-bool Socket::send(const std::string data){
-
+void Socket::send(const std::string data){
+	if(::send(_sockfid, data.c_str(), data.size(), MSG_NOSIGNAL) < 0){
+		throw new SocketException(SOCKET_EXCEPTION_RECEIVE,"Unable to send data.");
+	}
 }
 
-int Socket::receive(const std::string* data){
+std::string Socket::receive(){
+	char buffer[RECEIVE_BUFFER_SIZE+1];
 
+	memset(buffer, 0, RECEIVE_BUFFER_SIZE+1);
+	if(::recv(_sockfid, buffer, RECEIVE_BUFFER_SIZE, 0) < 0){
+		throw new SocketException(SOCKET_EXCEPTION_RECEIVE, "Unable to receive data.");
+	}
+
+	return buffer;
 }
 
-bool Socket::set_non_blocking(const bool blocking){
+void Socket::set_non_blocking(const bool blocking){
+	int opts = fcntl(_sockfid, F_GETFL);
+	if(opts < 0){
+		throw new SocketException(SOCKET_EXCEPTION_OPTIONS, "Unable to retrieve file status flags on socket.");
+	}
 
+	if(blocking){
+		// blocking
+		opts = (opts | ~O_NONBLOCK);
+	} else {
+		// non-blocking
+		opts = (opts | O_NONBLOCK);
+	}
+
+	if(fcntl(_sockfid,F_SETFL,opts) < 0){
+		throw new SocketException(SOCKET_EXCEPTION_OPTIONS, "Unable to change file status flags on socket.");
+	}
 }
 
 bool Socket::is_valid(){
