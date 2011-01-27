@@ -35,33 +35,11 @@ void print_usage(const int argc, char *argv[]){
  * handles signals that the service may receive
  * from the system.
  */
-void signal_handler(int sig){
-	switch(sig){
-		case SIGHUP:{
-			// Hangup
-			syslog(LOG_WARNING,"Received SIGHUP. Hanging up.");
-			break;
-		}
-		case SIGTERM:{
-			// Termination
-			syslog(LOG_WARNING,"Received SIGTERM. Shutting down.");
-			break;
-		}
-		case SIGINT:{
-			// Terminal interrupt
-			syslog(LOG_WARNING,"Received SIGINT.");
-			break;
-		}
-		case SIGQUIT:{
-			// Terminal quit
-			syslog(LOG_WARNING,"Receive SIGQUIT.");
-			break;
-		}
-		default:{
-			// unhandled signal, just log
-			syslog(LOG_WARNING,"Unhandled signal (%d) %s",sig,strsignal(sig));
-			break;
-		}
+void signal_handler(const int sig){
+	try {
+		Service::get_instance()->process_signal(sig);
+	}catch(ServiceException e){
+		syslog(LOG_ERR, "Caught service exception: %s", e.get_description().c_str());
 	}
 }
 
@@ -79,6 +57,8 @@ int main(int argc, char *argv[]){
 	signal(SIGTERM,signal_handler);
 	signal(SIGINT,signal_handler);
 	signal(SIGQUIT,signal_handler);
+	signal(SIGABRT,signal_handler);
+	signal(SIGSEGV,signal_handler);
 
 	// parse arguments
 	int c;
@@ -157,7 +137,7 @@ int main(int argc, char *argv[]){
 	// core processing below
 
 	try {
-		Service* service = new Service();
+		Service::get_instance()->start();
 	}catch(ServiceException e){
 		syslog(LOG_ERR,"Unable to start up service %s (%s)",SERVICE_NAME,e.get_description().c_str());
 	}
