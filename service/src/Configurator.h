@@ -21,7 +21,7 @@ private:
 public:
 	static Configurator* get_instance();
 	virtual ~Configurator();
-	void read(std::string filename);
+	void read(const std::string filename);
 
 	int get_port();
 	int get_max_connections();

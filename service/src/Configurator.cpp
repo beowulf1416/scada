@@ -27,6 +27,10 @@ Configurator* Configurator::get_instance(){
 	return Configurator::instance;
 }
 
+void Configurator::read(const std::string filename){
+
+}
+
 int Configurator::get_port(){
 	return this->port;
 }
