@@ -14,8 +14,9 @@
 
 #define SERVICE_NAME "service"
 
+#include "Service.h"
+#include "ServiceException.h"
 #include "Configurator.h"
-#include "Listener.h"
 
 using namespace std;
 
@@ -156,10 +157,9 @@ int main(int argc, char *argv[]){
 	// core processing below
 
 	try {
-		Listener *listener = new Listener(Configurator::get_instance()->get_port());
-		listener->start();
-	}catch(int e){
-		syslog(LOG_ERR,"Unable to start up service %s (%d)",SERVICE_NAME,e);
+		Service* service = new Service();
+	}catch(ServiceException e){
+		syslog(LOG_ERR,"Unable to start up service %s (%s)",SERVICE_NAME,e.get_description().c_str());
 	}
 
 	// core processing above

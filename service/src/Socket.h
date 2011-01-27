@@ -13,17 +13,12 @@
 #include <netinet/in.h>
 #include <string>
 
+#include "SocketException.h"
+
 const int MAX_HOSTNAME = 200;
 
 enum Protocol {
 	PROTOCOL_IP = 0
-};
-
-enum SocketException {
-	SOCKET_EXCEPTION_CREATE = 100,
-	SOCKET_EXCEPTION_OPTION = 101,
-	SOCKET_EXCEPTION_BIND = 102,
-	SOCKET_EXCEPTION_ACCEPT = 103
 };
 
 class Socket {
@@ -39,7 +34,7 @@ public:
 	void create();
 	void bind(const int port);
 	void listen(const int connections);
-	void accept(const Socket* socket);
+	void accept(Socket* socket);
 
 	void connect(const std::string host, const int port);
 
