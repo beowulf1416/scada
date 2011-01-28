@@ -25,3 +25,14 @@ Log* Log::get_instance(){
 	}
 	return Log::instance;
 }
+
+void Log::add_logger(const ILogger logger){
+	_loggers.push_back(logger);
+}
+
+void Log::log(const std::string source, const std::string message){
+	vector<ILogger>::const_iterator iterator;
+	for(iterator = _loggers.begin(); iterator != _loggers.end(); iterator++){
+		*iterator->log(source, message);
+	}
+}

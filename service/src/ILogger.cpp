@@ -16,6 +16,6 @@ ILogger::~ILogger() {
 	// TODO Auto-generated destructor stub
 }
 
-void ILogger::log(string msg){
+void ILogger::log(const std::string source, const std::string msg){
 
 }

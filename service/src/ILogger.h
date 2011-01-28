@@ -17,7 +17,7 @@ public:
 	ILogger();
 	virtual ~ILogger();
 
-	virtual void log(string msg);
+	virtual void log(const std::string source, const std::string msg);
 };
 
 #endif /* ILOGGER_H_ */
