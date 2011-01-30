@@ -13,10 +13,12 @@
 #include <sys/stat.h>
 
 #define SERVICE_NAME "service"
+#define DEFAULT_CONFIG_FILE "/etc/service/service.xml"
+
+#include "Configurator.h"
 
 #include "Service.h"
 #include "ServiceException.h"
-#include "Configurator.h"
 
 using namespace std;
 
@@ -137,6 +139,7 @@ int main(int argc, char *argv[]){
 	// core processing below
 
 	try {
+		Configurator::get_instance()->read(DEFAULT_CONFIG_FILE);
 		Service::get_instance()->start();
 	}catch(ServiceException e){
 		syslog(LOG_ERR,"Unable to start up service %s (%s)",SERVICE_NAME,e.get_description().c_str());
