@@ -8,6 +8,7 @@
 #ifndef SOCKETEXCEPTION_H_
 #define SOCKETEXCEPTION_H_
 
+#include <exception>
 #include <string>
 
 enum SocketExceptionEnum {
@@ -23,7 +24,7 @@ enum SocketExceptionEnum {
 };
 typedef enum SocketExceptionEnum SocketException_t;
 
-class SocketException {
+class SocketException : public std::exception {
 
 private:
 	SocketException_t _code;
@@ -32,7 +33,7 @@ private:
 public:
 	SocketException(const SocketException_t code, const std::string message):
 		_code(code),_msg(message){};
-	virtual ~SocketException();
+	virtual ~SocketException() throw ();
 
 	SocketException_t get_code(){ return _code; };
 	std::string get_description(){ return _msg; }

@@ -12,6 +12,6 @@ ServiceException::ServiceException(const ServiceException_t code, const std::str
 	_msg = message;
 }
 
-ServiceException::~ServiceException() {
+ServiceException::~ServiceException() throw (){
 	// TODO Auto-generated destructor stub
 }

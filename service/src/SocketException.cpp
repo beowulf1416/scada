@@ -12,6 +12,6 @@
 //	_msg = message;
 //}
 
-SocketException::~SocketException() {
+SocketException::~SocketException() throw () {
 	// TODO Auto-generated destructor stub
 }
