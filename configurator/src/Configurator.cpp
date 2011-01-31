@@ -15,8 +15,11 @@
 #include <xercesc/dom/DOMDocument.hpp>
 #include <xercesc/dom/DOMException.hpp>
 #include <syslog.h>
+#include <string>
+#include <sstream>
 
 #include "ConfigurationException.h"
+#include "ListenerConfiguration.h"
 
 using namespace xercesc;
 
@@ -39,6 +42,8 @@ Configurator* Configurator::get_instance(){
 }
 
 void Configurator::read(const std::string file){
+	assert(file.length() > 0);
+
 	try {
 		XMLPlatformUtils::Initialize();
 	} catch(const XMLException& e){
@@ -65,12 +70,27 @@ void Configurator::read(const std::string file){
 		// listeners
 		XMLCh* tagListeners = XMLString::transcode("listeners");
 		XMLCh* tagListener = XMLString::transcode("listener");
+		XMLCh* attrType = XMLString::transcode("type");
+
 		DOMNodeList* listeners = doc->getElementsByTagName(tagListeners);
 		for(size_t i = 0, len = listeners->getLength(); i < len; i++){
 			DOMNode* child = listeners->item(i);
 			if(child->getNodeType() == DOMNode::ELEMENT_NODE &&
 				static_cast<DOMElement*>(child)->getTagName() == tagListener){
+				DOMElement* element = static_cast<DOMElement*>(child);
 
+				std::string sztype = XMLString::transcode(element->getAttribute(attrType));
+				if(!ListenerConfiguration::exists(sztype)){
+					std::stringstream s;
+					s << "Unrecognised listener type :" << sztype;
+					std::string sz = s.str();
+					throw new ConfigurationException(CONFIG_EXCEPTION_PARSE,sz);
+				}
+
+				ListenerConfiguration* listener = new ListenerConfiguration(
+						ListenerConfiguration::convert(sztype)
+				);
+				_listeners.push_back(*listener);
 			}
 		}
 		XMLString::release(&tagListeners);
@@ -102,4 +122,8 @@ void Configurator::read(const std::string file){
 	delete parser;
 
 	xercesc::XMLPlatformUtils::Terminate();
+}
+
+std::vector<ListenerConfiguration> Configurator::get_listeners(){
+	return _listeners;
 }
