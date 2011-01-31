@@ -31,6 +31,7 @@ using namespace std;
 void print_usage(const int argc, char *argv[]){
 	cout << "Usage: " << SERVICE_NAME << " [OPTIONS] " << endl;
 	cout << "OPTIONS" << endl;
+	cout << "\t-f filename\tuse specified configuration file" << endl;
 	cout << "\t-n\tDo not daemonize. Runs in the foreground\n\t\tinstead of as a background process" << endl;
 	cout << "\t-h\tPrints this usage information" << endl;
 	cout << "\t--help\tPrints this usage information" << endl;
@@ -68,14 +69,16 @@ int main(int argc, char *argv[]){
 	// parse arguments
 	char* file = NULL;
 	int c;
-	while( (c = getopt(argc, argv, "fnh|help")) != -1){
+	while( (c = getopt(argc, argv, "f:nh|help")) != -1){
 		switch(c){
 			case 'f':{
 				file = optarg;
 				if(file == NULL){
+					cout << SERVICE_NAME << " -f filename" << endl;
+					cout << "\t-f option requires filename argument" << endl;
 					print_usage(argc, argv);
+					exit(EXIT_SUCCESS);
 				}
-				exit(EXIT_SUCCESS);
 				break;
 			}
 			case 'n':{
@@ -84,6 +87,12 @@ int main(int argc, char *argv[]){
 				break;
 			}
 			case 'h':{
+				// show help
+				print_usage(argc,argv);
+				exit(EXIT_SUCCESS);
+				break;
+			}
+			case '?':{
 				// show help
 				print_usage(argc,argv);
 				exit(EXIT_SUCCESS);
