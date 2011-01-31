@@ -11,6 +11,8 @@
 #include <map>
 #include <assert.h>
 
+static std::map<std::string,ListenerType> _listenerTypes;
+
 ListenerConfiguration::ListenerConfiguration(const ListenerType type) {
 	_type = type;
 }

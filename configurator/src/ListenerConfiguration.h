@@ -21,8 +21,6 @@ class ListenerConfiguration {
 private:
 	ListenerType _type;
 
-	static std::map<std::string,ListenerType> _listenerTypes;
-
 	static void initialize();
 public:
 	ListenerConfiguration(const ListenerType type);
