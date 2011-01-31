@@ -61,6 +61,13 @@ void Configurator::read(const std::string file){
 
 	try {
 		doc = parser->parseURI(fn);
+
+		// listeners
+		DOMNodeList* listeners = doc->getElementsByTagName(XMLString::transcode("listeners"));
+
+		// loggers
+		DOMNodeList* loggers = doc->getElementsByTagName(XMLString::transcode("loggers"));
+
 	} catch(const XMLException& e){
 		char* msg = XMLString::transcode(e.getMessage());
 		std::string msg2 = msg;
@@ -76,6 +83,8 @@ void Configurator::read(const std::string file){
 
 		throw new ConfigurationException(CONFIG_EXCEPTION_PARSE, msg2);
 	}
+
+	delete parser;
 
 	xercesc::XMLPlatformUtils::Terminate();
 }
