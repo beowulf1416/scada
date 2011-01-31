@@ -63,10 +63,25 @@ void Configurator::read(const std::string file){
 		doc = parser->parseURI(fn);
 
 		// listeners
-		DOMNodeList* listeners = doc->getElementsByTagName(XMLString::transcode("listeners"));
+		XMLCh* tagListeners = XMLString::transcode("listeners");
+		XMLCh* tagListener = XMLString::transcode("listener");
+		DOMNodeList* listeners = doc->getElementsByTagName(tagListeners);
+		for(size_t i = 0, len = listeners->getLength(); i < len; i++){
+			DOMNode* child = listeners->item(i);
+			if(child->getNodeType() == DOMNode::ELEMENT_NODE &&
+				static_cast<DOMElement*>(child)->getTagName() == tagListener){
+
+			}
+		}
+		XMLString::release(&tagListeners);
 
 		// loggers
-		DOMNodeList* loggers = doc->getElementsByTagName(XMLString::transcode("loggers"));
+		XMLCh* tagLoggers = XMLString::transcode("loggers");
+		DOMNodeList* loggers = doc->getElementsByTagName(tagLoggers);
+		for(size_t i = 0, len = loggers->getLength(); i < len; i++){
+
+		}
+		XMLString::release(&tagLoggers);
 
 	} catch(const XMLException& e){
 		char* msg = XMLString::transcode(e.getMessage());
