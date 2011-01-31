@@ -60,7 +60,6 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1657078190" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
 								<option id="gnu.both.asm.option.include.paths.1685056406" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Configurator}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/include/postgresql"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/configurator/src}&quot;"/>
 								</option>
