@@ -10,9 +10,17 @@
 
 #include <ILogger.h>
 
+#include <mysql.h>
+#include <string>
+
 class MysqlLogger: public ILogger {
+
+private:
+	MYSQL *_cn;
 public:
-	MysqlLogger();
+	MysqlLogger(const std::string hostname, const std::string username,
+			const std::string password, const std::string dbname, const int port,
+			const std::string socketfid, const unsigned long flags);
 	virtual ~MysqlLogger();
 };
 
