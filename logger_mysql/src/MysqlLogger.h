@@ -22,6 +22,8 @@ public:
 			const std::string password, const std::string dbname, const int port,
 			const std::string socketfid, const unsigned long flags);
 	virtual ~MysqlLogger();
+
+	void log(const LogLevelType type, const std::string msg);
 };
 
 #endif /* MYSQLLOGGER_H_ */

@@ -21,6 +21,8 @@ public:
 			const std::string options, const std::string tty, const std::string dbname,
 			const std::string username, const std::string password);
 	virtual ~PostgresLogger();
+
+	void log(const LogLevelType type, const std::string msg);
 };
 
 #endif /* POSTGRESLOGGER_H_ */

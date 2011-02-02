@@ -31,6 +31,6 @@ PostgresLogger::~PostgresLogger() {
 	// TODO Auto-generated destructor stub
 }
 
-void ILogger::log(const LogLevelType type, const std::string source){
+void PostgresLogger::log(const LogLevelType type, const std::string source){
 
 }
