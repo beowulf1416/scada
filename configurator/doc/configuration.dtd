@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE service [
 <!ELEMENT listeners (listener)>
+<!ATTLIST listener id CDATA>
 <!ATTLIST listener type CDATA (tcpip|modbus)>
 <!ELEMENT loggers (logger)>
 <!ATTLIST logger type CDATA (syslog|db)>
