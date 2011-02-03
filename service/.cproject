@@ -33,6 +33,7 @@
 								<option id="gnu.cpp.compiler.option.include.paths.561745137" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/configurator/src}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/include/postgresql"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ilogger/src}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.372669031" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -42,15 +43,18 @@
 								<option id="gnu.c.compiler.option.include.paths.1962100788" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/usr/include/postgresql"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/configurator/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ilogger/src}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.205998046" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1720809516" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1243358990" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.2147311017" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="ilogger"/>
 									<listOptionValue builtIn="false" value="configurator"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.493511657" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ilogger/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/configurator/Debug}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.802486245" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -62,6 +66,7 @@
 								<option id="gnu.both.asm.option.include.paths.1685056406" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/usr/include/postgresql"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/configurator/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ilogger/src}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.56636057" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -493,6 +498,13 @@
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/Configurator"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/Configurator/Debug"/>
 						<entry flags="RESOLVED" kind="libraryFile" name="Configurator"/>
+					</externalSetting>
+				</externalSettings>
+				<externalSettings containerId="ilogger;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/ilogger"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/ilogger/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="ilogger"/>
 					</externalSetting>
 				</externalSettings>
 			</storageModule>
