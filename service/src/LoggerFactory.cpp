@@ -6,6 +6,7 @@
  */
 
 #include "LoggerFactory.h"
+#include "ListenerConfiguration.h"
 
 LoggerFactory::LoggerFactory() {
 	// TODO Auto-generated constructor stub
@@ -14,4 +15,9 @@ LoggerFactory::LoggerFactory() {
 
 LoggerFactory::~LoggerFactory() {
 	// TODO Auto-generated destructor stub
+}
+
+ILogger* LoggerFactory::create(const ListenerConfiguration config){
+	// TODO
+	return NULL;
 }

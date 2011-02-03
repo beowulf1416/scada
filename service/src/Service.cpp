@@ -6,11 +6,16 @@
  */
 
 #include "Service.h"
+#include "ILogger.h"
+#include "LoggerFactory.h"
+#include "Configurator.h"
+#include "ListenerConfiguration.h"
 
 #include <stddef.h>
 #include <string.h>
 #include <syslog.h>
 #include <signal.h>
+#include <sstream>
 
 Service* Service::_instance = NULL;
 
@@ -55,9 +60,26 @@ void Service::process_signal(const int signal){
 }
 
 void Service::start(){
-
+	std::vector<ListenerConfiguration> listeners = Configurator::get_instance()
+		->get_listeners();
+	std::vector<ListenerConfiguration>::iterator iterator;
+	for(iterator = listeners.begin(); iterator != listeners.end(); iterator++){
+		ILogger* logger = LoggerFactory::create(*iterator);
+		if(logger != NULL){
+			_loggers.push_back(*logger);
+		}
+	}
 }
 
 void Service::stop(){
-
+	std::vector<ILogger>::iterator iterator;
+	for(iterator = _loggers.begin(); iterator != _loggers.end(); iterator++){
+		try {
+			iterator->close();
+		} catch(std::exception& e){
+			std::stringstream s;
+			s << iterator->get_id();
+			syslog(LOG_ERR,"Unable to close logger %s", s.str().c_str());
+		}
+	}
 }

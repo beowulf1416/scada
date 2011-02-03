@@ -8,8 +8,11 @@
 #ifndef SERVICE_H_
 #define SERVICE_H_
 
+#include <vector>
+
 #include "Socket.h"
 #include "SocketException.h"
+#include "ILogger.h"
 
 class Service {
 
@@ -18,6 +21,8 @@ private:
 	Service();
 
 	Socket _socket;
+
+	std::vector<ILogger> _loggers;
 
 public:
 	virtual ~Service();

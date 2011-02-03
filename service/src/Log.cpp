@@ -6,6 +6,7 @@
  */
 
 #include "Log.h"
+#include "ILogger.h"
 
 #include <stddef.h>
 
@@ -30,9 +31,9 @@ void Log::add_logger(const ILogger logger){
 	_loggers.push_back(logger);
 }
 
-void Log::log(const std::string source, const std::string message){
-	vector<ILogger>::iterator iterator;
+void Log::log(const LogLevelType level, const std::string source){
+	std::vector<ILogger>::iterator iterator;
 	for(iterator = _loggers.begin(); iterator != _loggers.end(); iterator++){
-		iterator->log(source, message);
+		iterator->log(level, source);
 	}
 }

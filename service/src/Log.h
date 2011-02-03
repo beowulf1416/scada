@@ -18,14 +18,14 @@ private:
 	static Log* instance;
 	Log();
 
-	vector<ILogger> _loggers;
+	std::vector<ILogger> _loggers;
 
 public:
 	static Log* get_instance();
 	virtual ~Log();
 
 	void add_logger(const ILogger logger);
-	void log(const std::string source, const std::string message);
+	void log(const LogLevelType level, const std::string source);
 };
 
 #endif /* LOG_H_ */

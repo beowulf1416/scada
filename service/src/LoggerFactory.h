@@ -9,13 +9,14 @@
 #define LOGGERFACTORY_H_
 
 #include "ILogger.h"
+#include "ListenerConfiguration.h"
 
 class LoggerFactory {
 public:
 	LoggerFactory();
 	virtual ~LoggerFactory();
 
-	ILogger create();
+	static ILogger* create(const ListenerConfiguration config);
 };
 
 #endif /* LOGGERFACTORY_H_ */

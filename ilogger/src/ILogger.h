@@ -24,7 +24,9 @@ public:
 	ILogger();
 	virtual ~ILogger();
 
+	virtual std::string get_id();
 	virtual void log(const LogLevelType level, const std::string source);
+	virtual void close();
 };
 
 #endif /* ILOGGER_H_ */
