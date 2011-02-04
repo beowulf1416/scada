@@ -24,6 +24,7 @@ public:
 	virtual ~MysqlLogger();
 
 	void log(const LogLevelType type, const std::string msg);
+	void close();
 };
 
 #endif /* MYSQLLOGGER_H_ */

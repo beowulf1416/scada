@@ -7,6 +7,8 @@
 
 #include <LoggerException.h>
 #include <string>
+#include <postgres_fe.h>
+#include <postgresql/libpq-fe.h>
 
 #include "PostgresLogger.h"
 
@@ -33,4 +35,9 @@ PostgresLogger::~PostgresLogger() {
 
 void PostgresLogger::log(const LogLevelType type, const std::string source){
 
+}
+
+void PostgresLogger::close(){
+	// close db connection
+	PQfinish(_cn);
 }

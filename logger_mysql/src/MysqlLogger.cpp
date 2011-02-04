@@ -8,6 +8,8 @@
 #include <stddef.h>
 #include <string>
 #include <sstream>
+#include <mysql.h>
+#include <errmsg.h>
 #include <LoggerException.h>
 
 #include "MysqlLogger.h"
@@ -35,7 +37,26 @@ void MysqlLogger::log(const LogLevelType type, const std::string msg){
 	std::stringstream s;
 	s << "insert into data (date_logged,data) values (now()," << msg;
 	std::string sql = s.str();
-	if(mysql_query(_cn,sql.c_str()) != 0){
-
+	switch(mysql_query(_cn,sql.c_str())){
+		case CR_COMMANDS_OUT_OF_SYNC:{
+			// TODO
+			break;
+		}
+		case CR_SERVER_GONE_ERROR:{
+			// TODO
+			break;
+		}
+		case CR_SERVER_LOST:{
+			// TODO
+			break;
+		}
+		case CR_UNKNOWN_ERROR:{
+			// TODO
+			break;
+		}
 	}
+}
+
+void MysqlLogger::close(){
+	// no operation
 }
