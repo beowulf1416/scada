@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE service [
-<!ELEMENT listeners (listener)>
-<!ATTLIST listener id CDATA>
-<!ATTLIST listener type CDATA (tcpip|modbus)>
-<!ELEMENT loggers (logger)>
+<!ELEMENT service (devices,loggers)>
+<!ELEMENT devices (device+)>
+<!ATTLIST device id CDATA #REQUIRED>
+<!ATTLIST device protocol CDATA  #REQUIRED (tcpip|modbus)>
+<!ELEMENT loggers (logger+)>
+<!ATTLIST logger id CDATA #REQUIRED>
 <!ATTLIST logger type CDATA (syslog|db)>
 ]>
