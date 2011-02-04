@@ -11,9 +11,15 @@
 #include "ILogger.h"
 
 class SysLogger: public ILogger {
+
+private:
+	std::string _id;
 public:
 	SysLogger();
 	virtual ~SysLogger();
+
+	void log(const LogLevelType type, const std::string source);
+	void close();
 };
 
 #endif /* SYSLOGGER_H_ */

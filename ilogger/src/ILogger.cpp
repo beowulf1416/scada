@@ -15,3 +15,11 @@ ILogger::ILogger() {
 ILogger::~ILogger() {
 	// TODO Auto-generated destructor stub
 }
+
+std::string ILogger::get_id(){
+	return _id;
+}
+
+void ILogger::set_id(const std::string id){
+	_id = id;
+}

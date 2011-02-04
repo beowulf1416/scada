@@ -20,11 +20,16 @@ enum LogLevelEnum {
 typedef LogLevelEnum LogLevelType;
 
 class ILogger {
+
+private:
+	std::string _id;
 public:
 	ILogger();
 	virtual ~ILogger();
 
-	virtual std::string get_id();
+	std::string get_id();
+	void set_id(const std::string id);
+
 	virtual void log(const LogLevelType level, const std::string source);
 	virtual void close();
 };

@@ -21,7 +21,7 @@ SysLogger::~SysLogger() {
 	// TODO Auto-generated destructor stub
 }
 
-void ILogger::log(const LogLevelType level, const std::string msg){
+void SysLogger::log(const LogLevelType level, const std::string msg){
 	int logLevel = LOG_LEVEL_DATA;
 	switch(level){
 		case LOG_LEVEL_INFO:{
@@ -51,4 +51,8 @@ void ILogger::log(const LogLevelType level, const std::string msg){
 	}
 
 	syslog(logLevel, msg.c_str(), "");
+}
+
+void SysLogger::close(){
+	// TODO no operation
 }
