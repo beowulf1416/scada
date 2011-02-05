@@ -2,9 +2,12 @@
 <!DOCTYPE service [
 <!ELEMENT service (devices,loggers)>
 <!ELEMENT devices (device+)>
+<!ELEMENT device (url?)>
 <!ATTLIST device id CDATA #REQUIRED>
 <!ATTLIST device protocol CDATA  #REQUIRED (tcpip|modbus)>
+<!ELEMENT url (CDATA)>
 <!ELEMENT loggers (logger+)>
 <!ATTLIST logger id CDATA #REQUIRED>
 <!ATTLIST logger type CDATA (syslog|db)>
+<!ELEMENT url (CDATA)>
 ]>
